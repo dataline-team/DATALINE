@@ -1,14 +1,6 @@
-# Compiled Object files
-src/**/*.o
-
-
-# Compiled Static libraries
-src/**/*.a
-
-
-# Executables
-src/**/*.out
-
+# Build files
+build/
 
 # Others
 .idea/
+.vscode/
