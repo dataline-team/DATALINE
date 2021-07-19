@@ -8,3 +8,7 @@ src/**/*.a
 
 # Executables
 src/**/*.out
+
+
+# Others
+.idea/
