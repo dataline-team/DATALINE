@@ -17,10 +17,6 @@ Dataline's important set of features:
 
 - Quick: One of the fastest data retrieving mechanism are implemented in this project;
 
-- High quality: You can be sure about your data is in safety;
-
-- Powerful: Our servers and support works 24/7;
-
 
 ## Query language guide
 
@@ -33,31 +29,23 @@ Dataline's important set of features:
 
 ### Classes:
 
-- Field (class describing a single cell of DB);
+- Console
 
-- Row (this one describing a set of the cells with different types in row);
+- QueryLanguage
 
-- Table (class describing table (set of rows) which you can save and load from file);
+- Database
 
-- Database (class describing database as a set of tables, main unit in db classes hierarchy);
-
+- Parser
 
 --- 
 
-### Project architecture:
+### Project structure:
 
 
-- [CMakeList.txt](CMakeList.txt)
+- CMakeList.txt
 - Directories:
-    - [src/](src) - this is where the source code is;
-    - [build/](build) - a folder with build scripts, half-built code, other stuff related to the compilation process;
-    - [lib/](lib) - a folder that contains statically linkable, lib files (precompiled code) and is part of a library;
-    - [doc/](doc) - a folder with images and extra documentation;
-    - [test/](test) - this folder is for test covering of the sourse code;
-
-
-
-## Info for contributors
-
-> will be soon...
-
+    - [doc/](doc)
+    - [src/](src)
+    - [build/](build)
+    - [lib/](lib)
+    - [test/](test)
