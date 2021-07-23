@@ -54,3 +54,33 @@ It is better to use short commits that describes only one change
 
 [Console][Added] Command 'create'
 ```
+
+## Pull requests
+
+You can make pull request for issue, trello task or the feature you wont to add
+
+### Branch name
+
+Branch name should contain your full name and header of task or number of issue.
+
+```git
+<first_name>.<last_name>_<header-or-number-or-your-own>
+```
+
+### Example
+
+```git
+mykhailo.didur_iss123
+volodymyr.makotkin_code-style
+```
+
+### Description of pull request
+
+just describe what you did in such style.
+
+```git
+Changes:
+- did this
+- added smth
+...
+```
