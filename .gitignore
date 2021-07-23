@@ -4,3 +4,4 @@ build/
 # Others
 .idea/
 .vscode/
+cmake-build-debug/
