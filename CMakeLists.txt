@@ -7,4 +7,12 @@ include_directories(src)
 
 add_subdirectory(lib/googletest)  # GTEST_DIR
 
+find_package(Boost REQUIRED)  # BOOST_DIR
+if(NOT Boost_FOUND)
+    message(SEND_ERROR "Failed to find Boost")
+    return()
+else()
+    include_directories(${Boost_INCLUDE_DIR})
+endif()
+
 add_executable(DATALINE src/main.cpp)
