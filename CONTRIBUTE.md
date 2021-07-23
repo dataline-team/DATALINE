@@ -34,3 +34,23 @@ class Class
 
 };
 ```
+
+## Commits
+
+It is better to use short commits that describes only one change
+
+### Commit structure
+
+```git
+[Part of programm][Update|Add|Remove|Fix...etc] <commit_message>
+```
+
+### Examples
+
+```git
+[Parser][Add] Parser for 'select' is added
+
+[Database][Fixed] Issue #123
+
+[Console][Added] Command 'create'
+```
