@@ -8,7 +8,7 @@ int main()
     for (std::string &i: a) {
         std::cout << i;
     }
-    
+
     std::cout << std::endl;
 
     return 0;
