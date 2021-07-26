@@ -1,10 +1,7 @@
-cmake_minimum_required(VERSION 3.19)
-project(DATALINE)
+cmake_minimum_required(VERSION 3.5)
+project(dataline VERSION 0.0.0)
 
-set(CMAKE_CXX_STANDARD 17)
 
-include_directories(src)
-
-add_subdirectory(lib/googletest)  # GTEST_DIR
-
-add_executable(DATALINE src/main.cpp)
+add_subdirectory(lib/googletest)
+add_subdirectory(test)
+add_subdirectory(src)
