@@ -1,7 +1,3 @@
-cmake_minimum_required(VERSION 3.5)
-project(dataline VERSION 0.0.0)
-
-
 file(
         GLOB_RECURSE
         TEST_FILES

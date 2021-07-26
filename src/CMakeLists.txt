@@ -1,6 +1,3 @@
-cmake_minimum_required(VERSION 3.5)
-project(dataline VERSION 0.0.0)
-
 file(GLOB SOURCE_FILES *.cpp)
 file(GLOB HEADER_FILES *.h)
 
