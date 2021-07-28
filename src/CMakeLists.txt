@@ -3,6 +3,15 @@ file(GLOB HEADER_FILES *.h)
 
 set(BINARY ${CMAKE_PROJECT_NAME})
 
+# Boost library
+find_package(Boost REQUIRED)
+if(NOT Boost_FOUND)
+    message(SEND_ERROR "Failed to find Boost")
+    return()
+else()
+    include_directories(${Boost_INCLUDE_DIR})
+endif()
+
 add_executable(
         ${BINARY}
         ${SOURCE_FILES}

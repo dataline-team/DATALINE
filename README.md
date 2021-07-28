@@ -9,6 +9,7 @@
 >
 
 
+
 ## Features 
 
 Dataline's important set of features:
@@ -16,6 +17,19 @@ Dataline's important set of features:
 - Simple: Concise and straight-forward query language you can easily handle;
 
 - Quick: One of the fastest data retrieving mechanism are implemented in this project;
+
+
+## Build
+
+To build the project you have to install [Boost C++ Library](https://www.boost.org/).
+
+List of available versions: https://www.boost.org/users/download/
+
+Then create directory `build/` in the project directory and run:
+
+```zsh
+foo@bar:~$ cd build/ && cmake .. && cmake --build .
+```
 
 
 ## Query language guide
