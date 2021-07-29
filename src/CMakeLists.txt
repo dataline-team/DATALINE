@@ -4,7 +4,7 @@ file(GLOB HEADER_FILES *.h)
 set(BINARY ${CMAKE_PROJECT_NAME})
 
 # Boost library
-find_package(Boost REQUIRED)
+find_package(Boost COMPONENTS program_options REQUIRED)
 if(NOT Boost_FOUND)
     message(SEND_ERROR "Failed to find Boost")
     return()
@@ -17,6 +17,13 @@ add_executable(
         ${SOURCE_FILES}
         ${HEADER_FILES}
 )
+
+target_link_libraries(
+        ${BINARY}
+        Boost::program_options
+)
+
+list(REMOVE_ITEM SOURCE_FILES ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp)
 
 add_library(
         ${BINARY}_lib
