@@ -2,22 +2,19 @@
 #define CONSOLE_H_
 
 #include <iostream>
+#include "map"
+#include "functional"
+#include "vector"
 
 
 class Console
 {
 public:
-    Console() = default;
-    ~Console() = default;
-
-    static bool nextCommand(const std::string& command);
-    static bool pathIsCorrect(const std::string& path);
-
-    static void createDB();
-    static bool uploadDB(const std::string& path);
+    Console();
+    void processCommand(const std::string& command);
 
 private:
-
+    std::map<std::string, std::function<void(std::vector<std::string>)>> commands_;
 };
 
 
