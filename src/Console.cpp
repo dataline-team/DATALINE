@@ -11,5 +11,5 @@ Console::Console()
 void Console::processCommand(const std::string& command)
 {
     // pass
-    std::cout << "Unknown command.\n";
+    throw std::runtime_error("Unknown command");
 }

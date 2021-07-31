@@ -4,7 +4,6 @@
 
 int main(int argc, char **argv)
 {
-    Console console;
     std::string command;
 
     while (true)
@@ -17,7 +16,16 @@ int main(int argc, char **argv)
             break;
         }
 
-        console.processCommand(command);
+        Console console;
+
+        try
+        {
+            console.processCommand(command);
+        }
+        catch (std::runtime_error& err)
+        {
+            std::cout << "error: " << err.what() << '\n';
+        }
     }
 
     return 0;
