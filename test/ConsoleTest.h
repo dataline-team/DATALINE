@@ -2,9 +2,9 @@
 #include "Console.h"
 
 
-TEST(nextCommand, unknown_command_no_throw)
+TEST(processCommand, unknown_command_throw)
 {
     Console console;
 
-    EXPECT_NO_THROW(console.processCommand("unknown_command"));
+    EXPECT_THROW(console.processCommand("unknown_command"), std::runtime_error);
 }
