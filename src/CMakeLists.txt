@@ -18,6 +18,8 @@ add_executable(
         ${HEADER_FILES}
 )
 
+list(REMOVE_ITEM SOURCE_FILES ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp)
+
 add_library(
         ${BINARY}_lib
         STATIC
