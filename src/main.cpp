@@ -9,7 +9,7 @@ int main(int argc, char **argv)
     while (true)
     {
         std::cout << "dataline$ ";
-        std::cin >> command;
+        std::getline(std::cin, command);
 
         if (command == "exit" || command == "EXIT")
         {
