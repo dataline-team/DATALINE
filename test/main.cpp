@@ -2,6 +2,7 @@
 
 #include "ConsoleTest.h"
 #include "LexerTest.h"
+#include "VariantTest.h"
 
 
 int main(int argc, char** argv)
