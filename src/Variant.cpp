@@ -90,7 +90,7 @@ std::string Variant::toString()
 }
 
 
-DataTypes Variant::get_datatype() const
+DataTypes Variant::getDatatype() const
 {
     return datatype;
 }

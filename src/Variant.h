@@ -29,7 +29,7 @@ public:
     float toFloat();
     std::string toString();
 
-    DataTypes get_datatype() const;
+    DataTypes getDatatype() const;
 
 private:
     DataTypes datatype;
