@@ -11,33 +11,42 @@ using boost::bad_lexical_cast;
 
 enum class DataTypes
 {
-    NULL_T, BOOL, INT, FLOAT, STRING
+    NULL_T, BOOL, INT, DOUBLE, STRING
 };
 
 
 class Variant
 {
 public:
-    Variant() :                 b_(bool()), i_(int()), f_(float()), datatype(DataTypes::NULL_T) {}
-    explicit Variant(bool b) :  b_(b),      i_(int()), f_(float()), datatype(DataTypes::BOOL)   {}
-    explicit Variant(int i) :   b_(bool()), i_(i),     f_(float()), datatype(DataTypes::INT)    {}
-    explicit Variant(float f) : b_(bool()), i_(int()), f_(f),       datatype(DataTypes::FLOAT)  {}
-    explicit Variant(const std::string& s) : b_(bool()), i_(int()), f_(float()), s_(s), datatype(DataTypes::STRING) {}
+    Variant() :                  b_(nullptr),     i_(nullptr), d_(nullptr), s_(nullptr), datatype(DataTypes::NULL_T)   {}
+    explicit Variant(bool b) :   b_(new bool(b)), i_(nullptr), d_(nullptr), s_(nullptr), datatype(DataTypes::BOOL)     {}
+    explicit Variant(int i) :    b_(nullptr), i_(new int(i)),  d_(nullptr), s_(nullptr), datatype(DataTypes::INT)      {}
+    explicit Variant(double d) : b_(nullptr), i_(nullptr), d_(new double(d)), s_(nullptr), datatype(DataTypes::DOUBLE) {}
+    explicit Variant(const std::string& s) : b_(nullptr), i_(nullptr), d_(nullptr), s_(new std::string(s)), datatype(DataTypes::STRING) {}
 
-    bool toBool();
-    int toInt();
-    float toFloat();
-    std::string toString();
+    Variant(const Variant& variant);
+    Variant& operator=(const Variant& variant);
+    ~Variant();
+
+    bool toBool() const;
+    int toInt() const;
+    double toDouble() const;
+    std::string toString() const;
+
+    void setData(bool b);
+    void setData(int i);
+    void setData(double d);
+    void setData(const std::string& s);
 
     DataTypes getDatatype() const;
 
 private:
     DataTypes datatype;
 
-    bool b_;
-    int i_;
-    float f_;
-    std::string s_;
+    bool *b_;
+    int *i_;
+    double *d_;
+    std::string *s_;
 };
 
 
