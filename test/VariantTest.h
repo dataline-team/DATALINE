@@ -4,6 +4,29 @@
 
 
 
+// ----------------------- Object copy -----------------------
+
+TEST(constructorOfCopy, objectCopy)
+{
+    int n = 5;
+    Variant v(n);
+    Variant v2 = v;
+
+    EXPECT_EQ(v2.toInt(), n);
+}
+
+TEST(assignmentOperatorOverloading, objectAssignment)
+{
+    std::string str = "hello world";
+    Variant v(str);
+    Variant v2;
+    v2 = v;
+
+    EXPECT_EQ(v2.toString(), str);
+}
+
+
+
 // ----------------------- Variant::toBool() -----------------------
 
 TEST(toBool, null_cast)
@@ -33,12 +56,12 @@ TEST(toBool, int_cast)
 }
 
 
-TEST(toBool, float_cast)
+TEST(toBool, double_cast)
 {
-    float f = 115.12345;
-    Variant f_variant(f);
+    double d = 115.12345;
+    Variant d_variant(d);
 
-    EXPECT_EQ(f_variant.toBool(), static_cast<bool>(f));
+    EXPECT_EQ(d_variant.toBool(), static_cast<bool>(d));
 }
 
 
@@ -81,12 +104,12 @@ TEST(toInt, int_cast)
 }
 
 
-TEST(toInt, float_cast)
+TEST(toInt, double_cast)
 {
-    float f = 115.12345;
-    Variant f_variant(f);
+    double d = 115.12345;
+    Variant d_variant(d);
 
-    EXPECT_EQ(f_variant.toInt(), static_cast<int>(f));
+    EXPECT_EQ(d_variant.toInt(), static_cast<int>(d));
 }
 
 
@@ -113,59 +136,59 @@ TEST(toInt, bad_string_cast)
 
 // ----------------------- Variant::toFloat() -----------------------
 
-TEST(toFloat, null_cast)
+TEST(toDouble, null_cast)
 {
     Variant variant;
-    EXPECT_NO_THROW(variant.toFloat());
+    EXPECT_NO_THROW(variant.toDouble());
 
-    EXPECT_EQ(variant.toFloat(), float());
+    EXPECT_EQ(variant.toDouble(), float());
 }
 
 
-TEST(toFloat, bool_cast)
+TEST(toDouble, bool_cast)
 {
     bool is_true = true;
     Variant b_variant(is_true);
 
-    EXPECT_EQ(b_variant.toFloat(), static_cast<float>(is_true));
+    EXPECT_EQ(b_variant.toDouble(), static_cast<double>(is_true));
 }
 
 
-TEST(toFloat, int_cast)
+TEST(toDouble, int_cast)
 {
     int n = 1155;
     Variant i_variant(n);
 
-    EXPECT_EQ(i_variant.toFloat(), static_cast<float>(n));
+    EXPECT_EQ(i_variant.toDouble(), static_cast<double>(n));
 }
 
 
-TEST(toFloat, float_cast)
+TEST(toDouble, double_cast)
 {
-    float f = 115.12345;
-    Variant f_variant(f);
+    double d = 115.12345;
+    Variant d_variant(d);
 
-    EXPECT_EQ(f_variant.toFloat(), f);
+    EXPECT_EQ(d_variant.toDouble(), d);
 }
 
 
-TEST(toFloat, success_string_cast)
+TEST(toDouble, success_string_cast)
 {
     std::string str = "123.45";
     Variant str_variant(str);
 
-    EXPECT_EQ(str_variant.toFloat(), boost::lexical_cast<float>(str));
+    EXPECT_EQ(str_variant.toDouble(), boost::lexical_cast<double>(str));
 }
 
 
-TEST(toFloat, bad_string_cast)
+TEST(toDouble, bad_string_cast)
 {
     std::string str2 = "12..3";
     Variant str_variant(str2);
 
-    EXPECT_NO_THROW(str_variant.toFloat());
+    EXPECT_NO_THROW(str_variant.toDouble());
 
-    EXPECT_EQ(str_variant.toFloat(), float());
+    EXPECT_EQ(str_variant.toDouble(), float());
 }
 
 
@@ -175,7 +198,7 @@ TEST(toFloat, bad_string_cast)
 TEST(toString, null_cast)
 {
     Variant variant;
-    EXPECT_NO_THROW(variant.toFloat());
+    EXPECT_NO_THROW(variant.toDouble());
 
     EXPECT_EQ(variant.toString(), std::string());
 }
@@ -199,12 +222,12 @@ TEST(toString, int_cast)
 }
 
 
-TEST(toString, float_cast)
+TEST(toString, double_cast)
 {
-    float f = 115.12345;
-    Variant f_variant(f);
+    double d = 115.12345;
+    Variant d_variant(d);
 
-    EXPECT_EQ(f_variant.toString(), lexical_cast<std::string>(f));
+    EXPECT_EQ(d_variant.toString(), lexical_cast<std::string>(d));
 }
 
 
