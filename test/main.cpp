@@ -3,6 +3,8 @@
 #include "ConsoleTest.h"
 #include "LexerTest.h"
 #include "VariantTest.h"
+#include "RowTest.h"
+#include "TableTest.h"
 
 
 int main(int argc, char** argv)
