@@ -2,7 +2,7 @@
 
 
 
-bool Variant::toBool()
+bool Variant::toBool() const
 {
     switch (datatype)
     {
@@ -20,7 +20,7 @@ bool Variant::toBool()
 }
 
 
-int Variant::toInt()
+int Variant::toInt() const
 {
     switch (datatype)
     {
@@ -39,14 +39,13 @@ int Variant::toInt()
             }
             catch (const bad_lexical_cast& blc)
             {
-                datatype = DataTypes::STRING;
                 return int();
             }
     }
 }
 
 
-float Variant::toFloat()
+float Variant::toFloat() const
 {
     switch (datatype)
     {
@@ -65,14 +64,13 @@ float Variant::toFloat()
             }
             catch (const bad_lexical_cast& blc)
             {
-                datatype = DataTypes::STRING;
                 return float();
             }
     }
 }
 
 
-std::string Variant::toString()
+std::string Variant::toString() const
 {
     switch (datatype)
     {

@@ -24,10 +24,10 @@ public:
     explicit Variant(float f) : b_(bool()), i_(int()), f_(f),       datatype(DataTypes::FLOAT)  {}
     explicit Variant(const std::string& s) : b_(bool()), i_(int()), f_(float()), s_(s), datatype(DataTypes::STRING) {}
 
-    bool toBool();
-    int toInt();
-    float toFloat();
-    std::string toString();
+    bool toBool() const;
+    int toInt() const;
+    float toFloat() const;
+    std::string toString() const;
 
     DataTypes getDatatype() const;
 
