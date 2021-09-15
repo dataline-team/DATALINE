@@ -1,24 +1,31 @@
 #ifndef ROW_H_
 #define ROW_H_
 
-#include <iostream>
+#include "Cell.h"
 #include <vector>
-#include "Variant.h"
 
 
 class Row
 {
 public:
-    Row() {}
-    explicit Row(const std::vector<Variant>& cells) : cells_(cells) {}
+    Row();
+    explicit Row(const std::vector<Cell>& cells);
 
-    const Variant getItem(int pos) const;
-    const std::vector<Variant>& getRow() const;
-    void setItem(const Variant& cell, int pos);
-    void setRow(const std::vector<Variant>& row);
+    [[nodiscard]] unsigned int id() const;
+    void setId(unsigned int new_id);
 
+    void addCell(const Cell& cell);
+    void removeCell(int pos);
+    template<class T>
+    void setCell(const Cell& cell, int pos);
+    [[nodiscard]] const Cell& getCell(int pos) const;
+
+    void setRow(const std::vector<Cell>& cells);
+    [[nodiscard]] const std::vector<Cell>& getRow() const;
 private:
-    std::vector<Variant> cells_;
+    unsigned id_;
+    std::vector<Cell> cells_;
+    static unsigned int top_;
 };
 
 
