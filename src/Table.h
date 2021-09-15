@@ -2,59 +2,67 @@
 #define TABLE_H_
 
 #include "Row.h"
-#include <vector>
+#include "Operator.h"
 #include <map>
-#include <unordered_map>
-#include <functional>
+#include <algorithm>
+
+
+using config_t = std::map<std::string, datatype_t, std::less<>>;
+using table_t = std::map<int, Row>;
 
 
 
 class Table
 {
 public:
-    Table() {}
-    Table(const std::string& table_name) : table_name_(table_name) {}
-    explicit Table(const std::string& table_name, const std::map<std::string, DataTypes>& col_cfg) : table_name_(table_name), col_cfg_(col_cfg) {}
-    ~Table() {};
+    Table();
+    explicit Table(const std::string& table_name);
+    explicit Table(const std::string& table_name, const config_t& table_config);
+    explicit Table(const std::string& table_name, const config_t& table_config, const table_t& sortedTables);
 
-    void setConfig(const std::map<std::string, DataTypes>& col_cfg);
+    void setTName(const std::string& new_table_name);
+    [[nodiscard]] const std::string& getTName() const;
+
+    void setTConfig(const config_t& new_table_config);
+    [[nodiscard]] const config_t& getTConfig() const;
+
+    [[nodiscard]] const table_t& getTable() const;
 
     void addRow(const Row& row);
-    void setRow(const Row& row, std::function<void()>);  // `std::function<...>` signature hasn't been defined yet
-    void removeRow(std::function<void()>);
 
-    void setTableName(const std::string& new_table_name) { table_name_ = new_table_name; }
-    const std::string& getTableName() { return table_name_; }
+    template<typename T>
+    std::vector<Row> select(Operator op, const std::vector<std::string>& cols_to_select, const std::string& col_to_sort_by = std::string()) const;  // for Options: `ALL`
+    template<typename T>
+    std::vector<Row> select(Operator op, const std::string& col_name, const T& value,
+                            const std::vector<std::string>& cols_to_select, const std::string& col_to_sort_by = std::string()) const;  // for Options: `EQUALS_TO`, `NOT_EQUALS_TO`, `BIGGER_THAN_VALUE`, `LESS_THAN_VALUE`
+    template<typename T>
+    std::vector<Row> select(Operator op, const std::string& col_name, const T& value1, const T& value2,
+                            const std::vector<std::string>& cols_to_select, std::string col_to_sort_by) const;  // for Options: `BETWEEN_VALUES`, `OUTSIDE_VALUES`
 
-    bool getBoolItem(std::function<void()>);  // `std::function<...>` signature hasn't been defined yet
-    int getIntItem(std::function<void()>);
-    float getFloatItem(std::function<void()>);
-    const std::string& getStringItem(std::function<void()>);
 
-    void setItem(bool data, std::function<void()>);  // `std::function<...>` signature hasn't been defined yet
-    void setItem(int data, std::function<void()>);
-    void setItem(float data, std::function<void()>);
-    void setItem(const std::string& data, std::function<void()>);
+    void update(Operator op, const Table& table);  // for Options: `ALL`
+    template<typename T>
+    void update(Operator op, const std::string& col_name, const T& value, const Row& new_row);  // for Options: `EQUALS_TO`
 
-    bool empty();
 
-    void save() const;
-    void load();
+    void remove(Operator op);  // for Options: `ALL`
+    template<typename T>
+    void remove(Operator op, const std::string& col_name, const T& value);  // for Options: `EQUALS_TO`
+    template<typename T>
+    void remove(Operator op, const std::string& col_name, const T& value1, const T& value2);  // for Options: `EQUALS_TO`
+
+    [[nodiscard]] bool empty() const;
+
+//    void save();
+//    void load();
 
 private:
     std::string table_name_;
+    config_t table_config_;
+    table_t table_;
 
-    // config : pairs of {column_name, datatype}
-    std::map<std::string, DataTypes> col_cfg_;
-
-    // std::string - name of column the table sorted by
-    // unordered_map<data type of column, ...> - table sorted by coluшmn
-    std::map<std::string, std::unordered_map<bool, Row>> b_rows_;
-    std::map<std::string, std::unordered_map<int, Row>> i_rows_;
-    std::map<std::string, std::unordered_map<float, Row>> f_rows_;
-    std::map<std::string, std::unordered_map<std::string, Row>> s_rows_;
+    static Row handleRow(const std::pair<const int, Row>& row, const std::vector<int>& indexes) ;
 };
-
 
 
 #endif  // TABLE_H_
