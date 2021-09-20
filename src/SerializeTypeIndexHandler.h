@@ -6,8 +6,28 @@
 #define DATALINE_SERIALIZETYPEINDEXHANDLER_H
 
 
-class SerializeTypeIndexHandler {
+#include "Blank.h"
 
+#include <tuple>
+#include <string>
+#include <typeindex>
+#include <vector>
+#include <algorithm>
+#include <stdexcept>
+
+
+using named_typeindex = std::tuple<std::string, std::type_index>;
+
+
+class SerializeTypeIndexHandler
+{
+public:
+    [[nodiscard]] static std::type_index type_for_name(const std::string& name);
+    [[nodiscard]] static std::string const& name_for_type(std::type_index type);
+
+protected:
+    SerializeTypeIndexHandler();
+    static std::vector<named_typeindex> name_register;
 };
 
 
