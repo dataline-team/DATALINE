@@ -1,11 +1,13 @@
 #include "Row.h"
 
 
+
 Row::Row()
 {
     id_ = top_;
     top_++;
 }
+
 
 Row::Row(const std::vector<Cell>& cells) : cells_(cells)
 {
@@ -46,7 +48,8 @@ void Row::setCell(const Cell& cell, int pos)
 {
     if (cells_.at(pos).datatype() != cell.datatype())
     {
-        throw std::invalid_argument("Error! Data types don't match.");
+        BOOST_LOG_TRIVIAL(error) << "[Row::setCell] Data types don't match.";
+        return;
     }
 
     cells_.at(pos) = cell;
@@ -67,7 +70,8 @@ void Row::setRow(const std::vector<Cell>& cells)
     {
         if (current_row_iter->datatype() != new_row_iter->datatype())
         {
-            throw std::range_error("Row data types don't match");
+            BOOST_LOG_TRIVIAL(error) << "[Row::setRow] Row data types don't match";
+            return;
         }
     }
 
@@ -78,4 +82,11 @@ void Row::setRow(const std::vector<Cell>& cells)
 const std::vector<Cell> &Row::getRow() const
 {
     return cells_;
+}
+
+template<class Archive>
+void Row::serialize(Archive &ar, const unsigned int version)
+{
+    ar & id_;
+    ar & cells_;
 }

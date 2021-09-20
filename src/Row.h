@@ -22,6 +22,10 @@ public:
 
     void setRow(const std::vector<Cell>& cells);
     [[nodiscard]] const std::vector<Cell>& getRow() const;
+
+    template<class Archive>
+    void serialize(Archive & ar, const unsigned int version);
+
 private:
     unsigned id_;
     std::vector<Cell> cells_;
