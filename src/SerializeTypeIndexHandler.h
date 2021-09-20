@@ -1,0 +1,14 @@
+//
+// Created by voveex on 9/20/21.
+//
+
+#ifndef DATALINE_SERIALIZETYPEINDEXHANDLER_H
+#define DATALINE_SERIALIZETYPEINDEXHANDLER_H
+
+
+class SerializeTypeIndexHandler {
+
+};
+
+
+#endif //DATALINE_SERIALIZETYPEINDEXHANDLER_H
