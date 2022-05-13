@@ -1,5 +1,5 @@
 
-![logo](doc/images/logo.png)
+
 
 
 # DATALINE [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![Version: 0.0.0](https://img.shields.io/badge/Version-0.0.0-blueviolet)]() [![Coverage: percents](https://img.shields.io/badge/Coverage-0%25-yellowgreen)]()
